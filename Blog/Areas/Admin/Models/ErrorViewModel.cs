@@ -1,6 +1,4 @@
-using System;
-
-namespace Blog.Models
+namespace Blog.Areas.Admin.Models
 {
     public class ErrorViewModel
     {

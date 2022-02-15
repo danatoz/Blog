@@ -10,7 +10,6 @@
 
     <!-- SEO -->
     <meta name="description" content="150 words">
-    <meta name="author" content="uipasta">
     <meta name="url" content="http://www.yourdomainname.com">
     <meta name="copyright" content="company name">
     <meta name="robots" content="index,follow">
@@ -41,17 +40,25 @@
 
 </head>
 <body>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <!-- Preloader Start -->
+    <div class="preloader">
+        <div class="rounder"></div>
+    </div>
+    <!-- Preloader End -->
+    <div id="main">
+        <div class="container">
+            <div class="row">
+                @Html.Partial("_Header")
+                <div class="col-md-9">
+
+                    @RenderBody()
+
+                    @Html.Partial("_Footer")
+                </div>
+            </div>
+        </div>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - Blog - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
     <!-- All Javascript Plugins  -->
     <script type="text/javascript" src="~/js/jquery.min.js"></script>
     <script type="text/javascript" src="~/js/plugin.js"></script>

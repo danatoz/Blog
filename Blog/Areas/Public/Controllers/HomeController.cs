@@ -1,14 +1,15 @@
-﻿using Blog.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Blog.Areas.Admin.Models;
 
-namespace Blog.Controllers
+namespace Blog.Areas.Public.Controllers
 {
+    [Area("Public")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -31,6 +32,7 @@ namespace Blog.Controllers
             return View();
         }
 
+        [Route("Work")]
         public async Task<IActionResult> Work()
         {
             try
@@ -43,6 +45,8 @@ namespace Blog.Controllers
             }
             return View();
         }
+
+        [Route("Single")]
         public async Task<IActionResult> Single()
         {
             try
@@ -55,6 +59,8 @@ namespace Blog.Controllers
             }
             return View();
         }
+
+        [Route("About")]
         public async Task<IActionResult> About()
         {
             try
@@ -67,6 +73,8 @@ namespace Blog.Controllers
             }
             return View();
         }
+
+        [Route("Contact")]
         public async Task<IActionResult> Contact()
         {
             try
@@ -79,6 +87,8 @@ namespace Blog.Controllers
             }
             return View();
         }
+
+        [Route("Privacy")]
         public IActionResult Privacy()
         {
             try

@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Blog.Common.Config;
+using Microsoft.Extensions.Logging;
 
 namespace Blog
 {
@@ -27,8 +29,10 @@ namespace Blog
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
+            SharedConfiguration.UpdateSharedConfiguration(Configuration.GetConnectionString("DefaultConnectionString"), loggerFactory);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -49,8 +53,25 @@ namespace Blog
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    name: "PublicDefaultRoute",
+                    pattern: "{controller=Home}/{action=Index}/{id?}", 
+                    new { area = "Public" });
+
+                endpoints.MapControllerRoute(
+                    name: "PublicErrorRoute",
+                    pattern: "{controller=Error}/{code:int}",
+                    new { area = "Public", action = "Index" });
+
+                endpoints.MapControllerRoute(
+                    name: "AdminDefaultRoute",
+                    pattern: "Admin/{controller=Home}/{action=Index}/{id?}",
+                    new { area = "Admin" });
+
+                endpoints.MapControllerRoute(
+                    name: "AdminErrorRoute",
+                    pattern: "Admin/{controller=Error}/{code:int}",
+                    defaults: new { area = "Admin", action = "Index" });
+
             });
         }
     }
