@@ -8,7 +8,9 @@
 
         <div class="sub-title">
             <h2>My Blog</h2>
-            <a asp-action="Contact"><i class="icon-envelope"></i></a>
+            <a asp-action="Contact" asp-area="Public"><i class="icon-envelope"></i></a>
+            <a asp-action="Register" asp-controller="Account" asp-area="Admin"><i class="icon-envelope"></i></a>
+            <a asp-action="Login" asp-controller="Account" asp-area="Admin"><i class="icon-envelope"></i></a>
         </div>
 
 
@@ -23,8 +25,10 @@
                 <div class="post-info">
                     <span>November 23, 2016 / by <a href="#" target="_blank">Alex Parker</a></span>
                 </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae ut ratione similique temporibus tempora dicta soluta? Qui hic, voluptatem nemo quo corporis dignissimos voluptatum debitis cumque fugiat mollitia quasi quod. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae ut ratione similique.</p>
-                <a href="single.html" class="button button-style button-anim fa fa-long-arrow-right"><span>Read More</span></a>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae ut ratione similique temporibus tempora dicta soluta? Qui hic, 
+                    voluptatem nemo quo corporis dignissimos voluptatum debitis cumque fugiat mollitia quasi quod. Lorem ipsum dolor sit amet, consectetur 
+                    adipisicing elit. Molestiae ut ratione similique.</p>
+                <a asp-action="Single" asp-area="Public" class="button button-style button-anim fa fa-long-arrow-right"><span>Read More</span></a>
             </div>
             <!-- Blog Post End -->
             <!-- Blog Post Start -->

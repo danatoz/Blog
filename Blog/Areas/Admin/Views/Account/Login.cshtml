@@ -1,0 +1,28 @@
+﻿@model Blog.Areas.Admin.VIewModel.LoginViewModel
+@{
+    ViewBag.Title = "Авторизация";
+}
+<div class="form-signin">
+    <h2>Вход в приложение</h2>
+    <form method="post" asp-controller="Account" asp-action="Login" asp-area="Admin"
+          asp-route-returnUrl="@Model.ReturnUrl">
+        <div asp-validation-summary="ModelOnly"></div>
+        <div class="form-floating">
+            <label asp-for="Email"></label><br />
+            <input class="form-control" asp-for="Email" />
+            <span asp-validation-for="Email"></span>
+        </div>
+        <div class="form-floating">
+            <label asp-for="Password"></label><br />
+            <input class="form-control" asp-for="Password" />
+            <span asp-validation-for="Password"></span>
+        </div>
+        <div class="checkbox mb-3">
+            <label asp-for="RememberMe"></label><br />
+            <input class="form-control" asp-for="RememberMe" />
+        </div>
+        <div>
+            <input class="w-100 btn btn-lg btn-primary" type="submit" value="Войти" />
+        </div>
+    </form>
+</div>
