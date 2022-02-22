@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Blog.Areas.Admin.VIewModel.HomeViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -18,21 +19,24 @@
 
 
             <!-- Blog Post Start -->
-            <div class="col-md-12 blog-post">
-                <div class="post-title">
-                    <a href="single.html"><h1>How to make your company website based on bootstrap framework on localhost?</h1></a>
+            @foreach (var post in Model.Posts)
+            {
+                <div class="col-md-12 blog-post">
+                    <div class="post-title">
+                        <a href="single.html"><h1>@post.Title</h1></a>
+                    </div>
+                    <div class="post-info">
+                        <span>@post.PublicateDate.Value.ToString("D") / by <a href="#" target="_blank">Alex Parker</a></span>
+                    </div>
+                    <p>
+                        @Html.Raw(post.Description)
+                    </p>
+                    <a asp-action="Single" asp-area="Public" asp-route-id="@post.Id" class="button button-style button-anim fa fa-long-arrow-right"><span>Read More</span></a>
                 </div>
-                <div class="post-info">
-                    <span>November 23, 2016 / by <a href="#" target="_blank">Alex Parker</a></span>
-                </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae ut ratione similique temporibus tempora dicta soluta? Qui hic, 
-                    voluptatem nemo quo corporis dignissimos voluptatum debitis cumque fugiat mollitia quasi quod. Lorem ipsum dolor sit amet, consectetur 
-                    adipisicing elit. Molestiae ut ratione similique.</p>
-                <a asp-action="Single" asp-area="Public" class="button button-style button-anim fa fa-long-arrow-right"><span>Read More</span></a>
-            </div>
+            }
             <!-- Blog Post End -->
             <!-- Blog Post Start -->
-            <div class="col-md-12 blog-post">
+            <!--<div class="col-md-12 blog-post">
                 <div class="post-title">
                     <a href="single.html"><h1>How to design elegant e-mail newsletter in html for wish christmas to your subscribers?</h1></a>
                 </div>
@@ -41,10 +45,10 @@
                 </div>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae ut ratione similique temporibus tempora dicta soluta? Qui hic, voluptatem nemo quo corporis dignissimos voluptatum debitis cumque fugiat mollitia quasi quod. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae ut ratione similique.</p>
                 <a href="single.html" class="button button-style button-anim fa fa-long-arrow-right"><span>Read More</span></a>
-            </div>
+            </div>-->
             <!-- Blog Post End -->
             <!-- Blog Post Start -->
-            <div class="col-md-12 blog-post">
+            <!--<div class="col-md-12 blog-post">
                 <div class="post-image">
                     <img src="images/blog/1.jpg" alt="">
                 </div>
@@ -56,10 +60,10 @@
                 </div>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae ut ratione similique temporibus tempora dicta soluta? Qui hic, voluptatem nemo quo corporis dignissimos voluptatum debitis cumque fugiat mollitia quasi quod. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae ut ratione similique.</p>
                 <a href="single.html" class="button button-style button-anim fa fa-long-arrow-right"><span>Read More</span></a>
-            </div>
+            </div>-->
             <!-- Blog Post End -->
             <!-- Blog Post Start -->
-            <div class="col-md-12 blog-post">
+            <!--<div class="col-md-12 blog-post">
                 <div class="post-title">
                     <a href="single.html"><h1>Develop a custom wordpress membership plugin from scratch using framework on localhost - part 1</h1></a>
                 </div>
@@ -68,10 +72,10 @@
                 </div>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae ut ratione similique temporibus tempora dicta soluta? Qui hic, voluptatem nemo quo corporis dignissimos voluptatum debitis cumque fugiat mollitia quasi quod. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae ut ratione similique.</p>
                 <a href="single.html" class="button button-style button-anim fa fa-long-arrow-right"><span>Read More</span></a>
-            </div>
+            </div>-->
             <!-- Blog Post End -->
             <!-- Blog Post Start -->
-            <div class="col-md-12 blog-post">
+            <!--<div class="col-md-12 blog-post">
                 <div class="post-title">
                     <a href="single.html"><h1>How to customize a wordpress theme entirely from scratch using a child theme?</h1></a>
                 </div>
@@ -80,10 +84,10 @@
                 </div>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae ut ratione similique temporibus tempora dicta soluta? Qui hic, voluptatem nemo quo corporis dignissimos voluptatum debitis cumque fugiat mollitia quasi quod. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae ut ratione similique.</p>
                 <a href="single.html" class="button button-style button-anim fa fa-long-arrow-right"><span>Read More</span></a>
-            </div>
+            </div>-->
             <!-- Blog Post End -->
             <!-- Blog Post Start -->
-            <div class="col-md-12 blog-post">
+            <!--<div class="col-md-12 blog-post">
                 <div class="post-image">
                     <img src="images/blog/2.jpg" alt="">
                 </div>
@@ -95,10 +99,10 @@
                 </div>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae ut ratione similique temporibus tempora dicta soluta? Qui hic, voluptatem nemo quo corporis dignissimos voluptatum debitis cumque fugiat mollitia quasi quod. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae ut ratione similique.</p>
                 <a href="single.html" class="button button-style button-anim fa fa-long-arrow-right"><span>Read More</span></a>
-            </div>
+            </div>-->
             <!-- Blog Post End -->
             <!-- Blog Post Start -->
-            <div class="col-md-12 blog-post">
+            <!--<div class="col-md-12 blog-post">
                 <div class="post-title">
                     <a href="single.html"><h1>What mistakes every beginner make, when they make website using bootstrap?</h1></a>
                 </div>
@@ -107,7 +111,7 @@
                 </div>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae ut ratione similique temporibus tempora dicta soluta? Qui hic, voluptatem nemo quo corporis dignissimos voluptatum debitis cumque fugiat mollitia quasi quod. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae ut ratione similique.</p>
                 <a href="single.html" class="button button-style button-anim fa fa-long-arrow-right"><span>Read More</span></a>
-            </div>
+            </div>-->
             <!-- Blog Post End -->
 
 
@@ -121,7 +125,7 @@
     </div>
 
 
-    @Html.Partial("_Subscribe");
+    @Html.Partial("_Subscribe")
 
 
 </div>

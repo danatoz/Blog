@@ -6,6 +6,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Blog.Areas.Admin.Models;
+using Blog.Areas.Admin.VIewModel;
+using Blog.DAL.DbModels;
 
 namespace Blog.Areas.Public.Controllers
 {
@@ -21,15 +23,19 @@ namespace Blog.Areas.Public.Controllers
 
         public async Task<IActionResult> Index()
         {
+            var viewModel = new HomeViewModel();
             try
             {
-
+                using (var db = new ApplicationContext())
+                {
+                    viewModel.Posts = db.Posts.Where(p => p.Publicated == true).ToList();
+                }
             }
             catch (Exception ex)
             {
                 _logger.LogError("Error: ", ex);
             }
-            return View();
+            return View(viewModel);
         }
 
         [Route("Work")]
@@ -47,17 +53,22 @@ namespace Blog.Areas.Public.Controllers
         }
 
         [Route("Single")]
-        public async Task<IActionResult> Single()
+        public async Task<IActionResult> Single(int? id)
         {
+            if (id == null) return BadRequest();
+            var viewModel = new Post();
             try
             {
-
+                using (var db = new ApplicationContext())
+                {
+                    viewModel = db.Posts.Find(id.Value);
+                }
             }
             catch (Exception ex)
             {
                 _logger.LogError("Error: ", ex);
             }
-            return View();
+            return View(viewModel);
         }
 
         [Route("About")]
