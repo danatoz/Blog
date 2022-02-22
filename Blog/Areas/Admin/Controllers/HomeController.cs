@@ -37,32 +37,72 @@ namespace Blog.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Update(int? id)
         {
+            var viewModel = new Post();
             try
             {
-
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError("Error: ", ex);
-            }
-            return View();
-        }
-        [HttpPost]
-        public async Task<IActionResult> Update(Post model)
-        {
-            try
-            {
-                using (var context = new ApplicationContext())
+                if (id != null)
                 {
+                    using (var db = new ApplicationContext())
+                    {
+                        viewModel = db.Posts.FindAsync(id).Result;
 
-                    var viewMode = context.Posts.Add(model);
-                    context.SaveChanges();
+                        return View(viewModel);
+                    }
+
                 }
             }
             catch (Exception ex)
             {
                 _logger.LogError("Error: ", ex);
             }
+            return View(viewModel);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Update(Post model)
+        {
+            try
+            {
+                using (var db = new ApplicationContext())
+                {
+                    model.PublicateDate = DateTime.Now;
+                    
+                    if (model.Id != 0)
+                    {
+                        db.Posts.Update(model);
+                    }
+                    else
+                    {
+                        db.Posts.Add(model);
+                    }
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Error: ", ex);
+            }
+
+            return RedirectToAction("Posts", "Home", new { Area = "Admin" });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Posts()
+        {
+            try
+            {
+                using (var db = new ApplicationContext())
+                {
+                    var viewModel = db.Posts.Where(p => p.Id > 0).ToList();
+
+                    return View(viewModel);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Error: ", ex);
+            }
+
             return View();
         }
 

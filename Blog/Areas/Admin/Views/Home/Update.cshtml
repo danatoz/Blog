@@ -1,31 +1,38 @@
-﻿@model dynamic
+﻿@model Blog.DAL.DbModels.Post
 
 @{
     ViewBag.Title = "Новый пост";
+    var test = Model;
 }
 <script src="~/lib/ckeditor/ckeditor.js"></script>
 
-
-<div>
-    <form asp-area="Admin" asp-controller="Home" asp-action="Update" method="post">
-        <div class="row">
-            <div class="m-5">
-                <label>Заголовок</label>
-                <input class="form-control w-100" type="text" name="Title" />
-            </div>
+<form asp-area="Admin" asp-controller="Home" asp-action="Update" method="post">
+    <input type="hidden" name="Id" value="@Model.Id" />
+    <div class="row mt-5 mb-5">
+        <div class="col-6">
+            <label>Заголовок</label>
+            <input class="form-control w-100" type="text" name="Title" value="@Model.Title" />
         </div>
-        <textarea name="Description" id="editor"></textarea>
-        <div class="row justify-content-center mt-5">
-            <input class="btn btn-warning" type="submit" value="Сохранить" />
-            <input class="btn btn-secondary" type="button" value="Отмена" />
+        <div class="col-2">
+            <label>Опубликован</label>
+            <input class="form-control" type="checkbox" name="Publicated" value="@Model.Publicated" />
         </div>
-    </form>
-</div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <textarea name="Description" id="editor" >@Model.Description</textarea>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-5">
+        <input class="btn btn-warning" type="submit" value="Сохранить" />
+        <input class="btn btn-secondary" type="button" value="Отмена" />
+    </div>
+</form>
 
 <script>
     ClassicEditor
-        .create( document.querySelector( '#editor' ) )
-        .catch( error => {
-            console.error( error );
-        } );
+        .create(document.querySelector('#editor'))
+        .catch(error => {
+            console.error(error);
+        });
 </script>

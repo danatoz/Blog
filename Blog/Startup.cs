@@ -10,9 +10,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Blog.Common.Config;
 using Blog.DAL.DbModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Microsoft.Net.Http.Headers;
 
 namespace Blog
 {
@@ -29,6 +31,7 @@ namespace Blog
         {
             services.AddDbContext<ApplicationContext>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionString")));
+
             services.AddIdentity<User, IdentityRole>(options =>
             {
                 options.Password.RequiredLength = 3;
@@ -38,6 +41,7 @@ namespace Blog
                 options.Password.RequireDigit = false;
 
             }).AddEntityFrameworkStores<ApplicationContext>();
+
             services.AddControllersWithViews();
         }
 
@@ -47,6 +51,7 @@ namespace Blog
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                //app.UseBrowserLink();
             }
             else
             {
@@ -54,7 +59,13 @@ namespace Blog
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                OnPrepareResponse = context =>
+                {
+                    context.Context.Response.Headers.Append(HeaderNames.CacheControl, "public,max-age=31622400");
+                }
+            });
 
             app.UseRouting();
 

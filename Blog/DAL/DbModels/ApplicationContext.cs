@@ -15,13 +15,18 @@ namespace Blog.DAL.DbModels
             : base(options)
         {
             //Database.EnsureDeleted();
-            Database.EnsureCreated();
+            //Database.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
             optionsBuilder.UseSqlServer("Data Source=DANATO-Z;Integrated security=False;Initial Catalog=Blog;Trusted_Connection=True;");
+        }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
         }
     }
 }

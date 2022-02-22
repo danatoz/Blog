@@ -1,0 +1,19 @@
+﻿@model List<Blog.DAL.DbModels.Post>
+@{
+    ViewBag.Title = "Посты";
+}
+<div class="container">
+    @foreach (var post in Model)
+    {
+        <div class="border shadow p-4 rounded mt-3 mb-3">
+            <input type="hidden" value="@post.Id">
+            <h2>@post.Title</h2>
+            @Html.Raw(@post.Description)
+            <div class="align-items-end">
+                <div>
+                    <a asp-area="Admin" asp-controller="Home" asp-route-id="@post.Id" asp-action="Update" class="btn btn-warning">Редактировать</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
