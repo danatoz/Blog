@@ -10,6 +10,10 @@
             <a asp-action="Contact" asp-area="Public"><i class="icon-envelope"></i></a>
             <a asp-action="Register" asp-controller="Account" asp-area="Admin"><i class="icon-envelope"></i></a>
             <a asp-action="Login" asp-controller="Account" asp-area="Admin"><i class="icon-envelope"></i></a>
+            <div id="app">
+                <input v-model="message" />
+                {{message}}
+            </div>
         </div>
         <div class="col-md-12 content-page">
             <!-- Blog Post Start -->
@@ -118,3 +122,15 @@
 <!-- Back to Top Start -->
 <a href="#" class="scroll-to-top"><i class="fa fa-long-arrow-up"></i></a>
 <!-- Back to Top End -->
+@*<script src="~/lib/vue/vue.global.min.js" asp-append-version="true"></script>*@
+@section Scripts {
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    message: 'Hello Vue!'
+                }
+            }
+        }).mount('#app')
+    </script>
+}

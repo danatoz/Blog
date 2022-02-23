@@ -3,12 +3,13 @@
   "defaultProvider": "jsdelivr",
   "libraries": [
     {
-      "library": "",
-      "destination": "wwwroot/lib/jquery/",
-      "files": [
-        "dist/jquery.min.js",
-        "dist/jquery.min.map"
-      ]
+      "provider": "cdnjs",
+      "library": "vue@3.2.12",
+      "destination": "wwwroot/lib/vue/"
+    },
+    {
+      "library": "tinymce@5.1.1",
+      "destination": "wwwroot/lib/tinymce/"
     }
   ]
 }
