@@ -6,7 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Blog.Areas.Admin.Models;
-using Blog.Areas.Admin.VIewModel;
+using Blog.Areas.Admin.ViewModel;
 using Blog.DAL.DbModels;
 
 namespace Blog.Areas.Public.Controllers
