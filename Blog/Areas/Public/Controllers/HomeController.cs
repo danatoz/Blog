@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Blog.Areas.Admin.Models;
 using Blog.Areas.Admin.ViewModel;
 using Blog.DAL.DbModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace Blog.Areas.Public.Controllers
 {
@@ -23,19 +24,33 @@ namespace Blog.Areas.Public.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var viewModel = new HomeViewModel();
+            return View();
+        }
+
+        public async Task<IActionResult> GetPosts(int page = 1)
+        {
+            var viewModel = new IndexViewModel();
             try
             {
+                var pageSize = 4;
                 using (var db = new ApplicationContext())
                 {
-                    viewModel.Posts = db.Posts.Where(p => p.Publicated == true).ToList();
+                    IQueryable<Post> source = db.Posts.Where(p => p.Publicated == true);
+                    var count = await source.CountAsync();
+                    var items = await source.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+                    var pageViewModel = new PageViewModel(count, page, pageSize);
+                    viewModel = new IndexViewModel()
+                    {
+                        PageViewModel = pageViewModel,
+                        Posts = items,
+                    };
                 }
             }
             catch (Exception ex)
             {
                 _logger.LogError("Error: ", ex);
             }
-            return View(viewModel);
+            return Json(new { posts = viewModel.Posts, page = viewModel.PageViewModel });
         }
 
         [Route("Work")]

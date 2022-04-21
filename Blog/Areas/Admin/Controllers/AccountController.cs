@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Blog.Areas.Admin.VIewModel;
+using Blog.Areas.Admin.ViewModel;
 using Blog.DAL.DbModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.TagHelpers;

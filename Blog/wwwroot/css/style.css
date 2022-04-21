@@ -1711,3 +1711,7 @@ blockquote {
 .uipasta-credit a:hover {
     color: #333333;
 }
+
+.cursor-pointer {
+    cursor: pointer;
+}

@@ -58,7 +58,7 @@
             </div>
         </div>
     </div>
-
+    <script type="text/javascript" src="~/js/pageUtils.js" asp-append-version="true"></script>
     <!-- All Javascript Plugins  -->
     <script type="text/javascript" src="~/js/jquery.min.js"></script>
     <script type="text/javascript" src="~/js/plugin.js"></script>
@@ -66,7 +66,6 @@
 
     <!-- Main Javascript File  -->
     <script type="text/javascript" src="~/js/scripts.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
